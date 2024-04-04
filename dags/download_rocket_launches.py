@@ -24,7 +24,9 @@ download_launches = BashOperator(
 
 def _get_pictures():
     # Ensure directory exists
-    pip install pathlib, requests, json
+    pip install pathlib 
+    pip install requests 
+    pip install json
     pathlib.Path("/tmp/images").mkdir(parents=True, exist_ok=True)
 
     # Download all pictures in launches.json
