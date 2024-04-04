@@ -55,4 +55,4 @@ notify = BashOperator(
     dag=dag,
 )
 
-download_launches >> get_pictures >> notify
+download_launches >> get_pictures 
