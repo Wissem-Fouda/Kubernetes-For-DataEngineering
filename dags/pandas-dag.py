@@ -7,7 +7,7 @@ default_args = {
     'owner': 'airflow',
     'start_date': datetime(2024, 4, 5),  # Today's date
     'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    
 }
 
 with DAG('simple_pandas_dag', default_args=default_args, schedule_interval=None) as dag:
