@@ -1,6 +1,7 @@
 from airflow import DAG
 from datetime import datetime
 from pandas import Series
+from airflow.operators.python import PythonOperator
 
 # Configure DAG
 default_args = {
