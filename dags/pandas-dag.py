@@ -39,6 +39,6 @@ with DAG('pandas_twice_dag', default_args=default_args, schedule_interval=None) 
         task_id='process_data',
         python_callable=process_data_task,
         provide_context=True,  # Pass Series from previous task
-        upstream_task_id=create_series.task_id,
+        upstream_task_id=create_series,
     )
 
