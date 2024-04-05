@@ -16,7 +16,7 @@ with DAG('simple_pandas_dag', default_args=default_args, schedule_interval=None)
     def create_series_task():
         # Create a simple pandas Series
         data = Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])
-        print(f"Created pandas Series:\n {data}")
+        return data
 
     # Define task
     create_series = PythonOperator(
