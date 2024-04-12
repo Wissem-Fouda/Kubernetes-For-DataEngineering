@@ -23,13 +23,7 @@ with DAG(
             "--end_date",
             "{{next_ds}}",
             "--output_path",
-            "/data/ratings/{{ds}}.json",
-            "--user",
-            root,
-            "--password",
-            root,
-            "--host",
-            localhost,
+            "/data/ratings/{{ds}}.json"
         ],
         network_mode="airflow",
         # Note: this host path is on the HOST, not in the Airflow docker container.
