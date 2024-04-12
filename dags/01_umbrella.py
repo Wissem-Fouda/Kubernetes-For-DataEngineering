@@ -1,6 +1,7 @@
 import airflow.utils.dates
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
+from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
 dag = DAG(
     dag_id="01_umbrella",
