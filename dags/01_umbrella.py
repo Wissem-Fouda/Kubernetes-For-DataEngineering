@@ -34,5 +34,14 @@ task1 = KubernetesPodOperator(
 )
 
 
+task2 = KubernetesPodOperator(
+    namespace='airflow',
+    image="foudazdocker/task2:1.0.0",
+    name="task-2",
+    task_id="task-2",
+    get_logs=True,
+    dag=dag
+)
 
-task1 
+# Set task dependencies
+task1 >> task2
