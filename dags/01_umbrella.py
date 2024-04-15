@@ -1,6 +1,6 @@
 from datetime import datetime
 from airflow import DAG
-from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
 # Define your default arguments for the DAG
 default_args = {
@@ -9,7 +9,7 @@ default_args = {
     'start_date': datetime(2024, 4, 15),
     'email_on_failure': False,
     'email_on_retry': False,
-    'retries': 1
+    'retries': 0
 }
 
 # Define your DAG
@@ -22,7 +22,7 @@ dag = DAG(
 
 # Define the task using KubernetesPodOperator
 task1 = KubernetesPodOperator(
-    namespace='default',
+    namespace='airflow',
     image="python:3.8-slim",
     cmds=["echo"],
     arguments=["Hello, Airflow!"],
