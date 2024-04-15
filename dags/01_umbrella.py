@@ -1,6 +1,10 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
+from airflow.operators.python_operator import PythonOperator
+
+def print_output(**kwargs):
+    print(kwargs['ti'].xcom_pull(task_ids='task-1'))
 
 # Define your default arguments for the DAG
 default_args = {
@@ -32,15 +36,12 @@ task1 = KubernetesPodOperator(
     dag=dag
 )
 
-task2 = KubernetesPodOperator(
-    namespace='airflow',
-    image="python:3.8-slim",
-    cmds=["echo"],
-    arguments=["Hello, Airflow! again"],
-    name="task-2",
-    task_id="task-2",
-    get_logs=True,
+# Task to print the output
+print_output_task = PythonOperator(
+    task_id='print_output_task',
+    python_callable=print_output,
+    provide_context=True,
     dag=dag
 )
 
-task1 >> task2
+task1 >> print_output_task
