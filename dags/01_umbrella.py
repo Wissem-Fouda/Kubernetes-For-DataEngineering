@@ -31,3 +31,16 @@ task1 = KubernetesPodOperator(
     get_logs=True,
     dag=dag
 )
+
+task2 = KubernetesPodOperator(
+    namespace='airflow',
+    image="python:3.8-slim",
+    cmds=["echo"],
+    arguments=["Hello, Airflow! again"],
+    name="task-2",
+    task_id="task-2",
+    get_logs=True,
+    dag=dag
+)
+
+task1 >> task2
