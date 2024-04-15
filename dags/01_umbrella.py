@@ -23,7 +23,7 @@ dag = DAG(
 # Define the task using KubernetesPodOperator
 task1 = KubernetesPodOperator(
     namespace='default',
-    image="ubuntu:latest",
+    image="python:3.8-slim",
     cmds=["echo"],
     arguments=["Hello, Airflow!"],
     name="task-1",
