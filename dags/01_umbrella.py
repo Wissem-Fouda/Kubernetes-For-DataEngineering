@@ -40,8 +40,8 @@ task2 = KubernetesPodOperator(
     name="task-2",
     task_id="task-2",
     get_logs=True,
-    volumes=[{"name": "persistent-storage", "persistentVolumeClaim": {"claimName": "pvc-tasks"}}],
-    volume_mounts=[{"mountPath": "/mnt/persistent_volume", "name": "persistent-storage"}],
+    #volumes=[{"name": "persistent-storage", "persistentVolumeClaim": {"claimName": "pvc-tasks"}}],
+    #volume_mounts=[{"mountPath": "/mnt/persistent_volume", "name": "persistent-storage"}],
     dag=dag
 )
 
