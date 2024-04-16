@@ -36,7 +36,7 @@ task1 = KubernetesPodOperator(
 
 task2 = KubernetesPodOperator(
     namespace='airflow',
-    image="foudazdocker/demorepo:latest",
+    image="foudazdocker/demorepo:1.0",
     name="task-2",
     task_id="task-2",
     get_logs=True,
