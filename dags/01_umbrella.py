@@ -19,7 +19,7 @@ default_args = {
 dag = DAG(
     'example_kubernetes_pod',
     default_args=default_args,
-    description='A simple DAG to demonstrate KubernetesPodOperator & to test sync',
+    description='A simple DAG to demonstrate KubernetesPodOperator',
     schedule_interval=None
 )
 
