@@ -35,5 +35,29 @@ task2 = KubernetesPodOperator(
     get_logs=True,
     dag=dag
 )
+
+# Define task3 using KubernetesPodOperator
+task3 = KubernetesPodOperator(
+    namespace='airflow',
+    image="foudazdocker/task3:1.0",
+    name="task-3",
+    task_id="task-3",
+    get_logs=True,
+    dag=dag
+)
+
+# Define task4 using KubernetesPodOperator
+task4 = KubernetesPodOperator(
+    namespace='airflow',
+    image="foudazdocker/task4:1.0",
+    name="task-4",
+    task_id="task-4",
+    get_logs=True,
+    dag=dag
+)
+
 # Set task dependencies
-task1 >> task2
+task1 >> [task2, task3]
+task4.set_upstream([task2, task3])
+# Set task dependencies
+# task1 >> task2
