@@ -1,7 +1,7 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
-# Define default arguments for the DAG
+# Define default arguments for the DAG => i'm editing this DAG to check GitSync updates
 default_args = {
     'owner': 'Wissem Fouda',
     'depends_on_past': False,
