@@ -5,7 +5,7 @@ from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperato
 default_args = {
     'owner': 'Wissem Fouda',
     'depends_on_past': False,
-    'start_date': datetime(2024, 4, 15),
+    'start_date': datetime(2023, 1, 1),
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0
@@ -15,7 +15,7 @@ dag = DAG(
     'example_kubernetes_pod',
     default_args=default_args,
     description='A simple DAG to demonstrate KubernetesPodOperator',
-    schedule_interval=None
+    schedule_interval='42 15 * * *'
 )
 # Define task1 using KubernetesPodOperator
 task1 = KubernetesPodOperator(
