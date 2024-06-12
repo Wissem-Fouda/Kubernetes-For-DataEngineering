@@ -9,14 +9,14 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0
-}
+}G
 # Define the DAG
 dag = DAG(
     'example_kubernetes_pod',
     default_args=default_args,
     description='A simple DAG to demonstrate KubernetesPodOperator',
     schedule_interval='42 15 * * *'
-)
+)G
 # Define task1 using KubernetesPodOperator
 task1 = KubernetesPodOperator(
     namespace='airflow',
