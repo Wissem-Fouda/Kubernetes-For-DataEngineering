@@ -37,11 +37,11 @@ task2 = KubernetesPodOperator(
     dag=dag
 )
 
-bash_task = BashOperator(
-    task_id="bash_task",
-    bash_command="echo $MY_VAR",
-    env={"MY_VAR": "Hello World"}
-)
+#bash_task = BashOperator(
+#    task_id="bash_task",
+#    bash_command="echo $MY_VAR",
+#    env={"MY_VAR": "Hello World"}
+#)
 
 # Set task dependencies
-task1 >> task2 >> bash_task
+task1 >> task2 
