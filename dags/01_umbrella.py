@@ -1,6 +1,7 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
+from airflow.operators.bash import BashOperator
 # Define default arguments for the DAG => i'm editing this DAG to check GitSync updates
 default_args = {
     'owner': 'Wissem Fouda',
@@ -36,5 +37,13 @@ task2 = KubernetesPodOperator(
     dag=dag
 )
 
+task3 = BashOperator(
+    namespace='airflow',
+    name="task-3",
+    task_id="task-3",
+    bash_command='echo "hello world"; exit 99;',
+    dag=dag,
+)
+
 # Set task dependencies
-task1 >> task2
+task1 >> task2 >> task3
