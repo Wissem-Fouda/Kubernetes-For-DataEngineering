@@ -37,13 +37,11 @@ task2 = KubernetesPodOperator(
     dag=dag
 )
 
-task3 = BashOperator(
-    namespace='airflow',
-    name="task-3",
-    task_id="task-3",
-    bash_command='echo "hello world"; exit 99;',
-    dag=dag,
+bash_task = BashOperator(
+    task_id="bash_task",
+    bash_command="echo $MY_VAR",
+    env={"MY_VAR": "Hello World"}
 )
 
 # Set task dependencies
-task1 >> task2 >> task3
+task1 >> task2 >> bash_task
