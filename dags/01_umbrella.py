@@ -10,7 +10,7 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0
-}G
+}
 # Define the DAG
 dag = DAG(
     'example_kubernetes_pod',
