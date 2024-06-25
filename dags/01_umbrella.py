@@ -16,7 +16,7 @@ dag = DAG(
     'example_kubernetes_pod',
     default_args=default_args,
     description='A simple DAG to demonstrate KubernetesPodOperator',
-    schedule_interval='42 15 * * *'
+    schedule_interval=None
 )
 # Define task1 using KubernetesPodOperator
 task1 = KubernetesPodOperator(
