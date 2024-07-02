@@ -1,6 +1,6 @@
 default_args = {
-    'owner': 'airflow',
-    'start_date': datetime(2024, 7, 2),  # Today's date
+    'owner': 'FOUDA',
+    'start_date': datetime(2024, 7, 1),  # Today's date
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
 }
