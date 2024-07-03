@@ -4,7 +4,7 @@ from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperato
 from airflow.operators.bash import BashOperator
 from airflow.providers.mysql.operators.mysql import MySqlOperator
 # Define default arguments for the DAG => i'm editing this DAG to check GitSync updates
-# Is everything going well!!!!
+# Is everything going well!!!! Hellooo
 default_args = {
     'owner': 'Wissem Fouda',
     'depends_on_past': False,
