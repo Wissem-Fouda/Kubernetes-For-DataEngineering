@@ -13,7 +13,7 @@ default_args = {
 }
 # Define the DAG
 dag = DAG(
-    'Mysql server connection',
+    'MysqlServerConnection',
     default_args=default_args,
     description='Testing SQL server connection',
     schedule_interval=None
