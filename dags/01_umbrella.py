@@ -21,17 +21,6 @@ dag = DAG(
     schedule_interval=None
 )
 
-create_table_task = MySqlOperator(
-    task_id='create_table',
-    mysql_conn_id='mysql_id',  # Replace with your connection ID
-    sql="""
-    CREATE TABLE IF NOT EXISTS my_table (  
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        name VARCHAR(255) NOT NULL,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-    """,
-)
 
 # Define task1 using KubernetesPodOperator
 task1 = KubernetesPodOperator(
@@ -59,4 +48,4 @@ task2 = KubernetesPodOperator(
 #)
 
 # Set task dependencies
-create_table_task >> task1 >> task2 
+task1 >> task2 
