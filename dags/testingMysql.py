@@ -38,5 +38,5 @@ create_table_task = MySqlOperator(
 
 
 
-task1 >> create_table_task
+task1 >> create_table
 
