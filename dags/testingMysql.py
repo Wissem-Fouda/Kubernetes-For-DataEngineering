@@ -1,23 +1,41 @@
-default_args = {
-    'owner': 'FOUDA',
-    'start_date': datetime(2024, 7, 1),  # Today's date
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
-}
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.empty import EmptyOperator
+from airflow.providers.mysql.operators.mysql import MySqlOperator
 
-with DAG(
-    dag_id='test_sqlserver_connection',
+default_args = {
+    'owner': 'Fouda',
+    'depends_on_past': False,
+    'start_date': datetime(2025, 1, 1),
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 0
+}
+# Define the DAG
+dag = DAG(
+    'Mysql server connection',
     default_args=default_args,
-    schedule_interval=None,  # Set to None for manual execution
-) as dag:
-    # Task to create the table
-    create_table_task = MsSqlOperator(
-        task_id='create_test_table',
-        mssql_conn_id='your_sqlserver_conn_id',  # Replace with your connection ID
-        sql="""
-            CREATE TABLE IF NOT EXISTS TestTable (
-                id INT PRIMARY KEY IDENTITY,
-                data VARCHAR(255) NOT NULL
-            );
-        """,
-    )
+    description='Testing SQL server connection',
+    schedule_interval=None
+)
+
+
+task1 = EmptyOperator(task_id="task1")
+
+# Task to create the table
+create_table_task = MySqlOperator(
+    task_id='create_table',
+    mysql_conn_id='mysql_id',  # Replace with your connection ID
+    sql="""
+    CREATE TABLE IF NOT EXISTS my_table (  
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    """,
+)
+
+
+
+task1 >> create_table_task
+
