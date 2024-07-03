@@ -3,6 +3,7 @@ from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from airflow.operators.bash import BashOperator
 # Define default arguments for the DAG => i'm editing this DAG to check GitSync updates
+# Is everything going well!!!!
 default_args = {
     'owner': 'Wissem Fouda',
     'depends_on_past': False,
