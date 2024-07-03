@@ -20,7 +20,7 @@ dag = DAG(
 )
 
 
-task1 = EmptyOperator(task_id="task1")
+task1 = EmptyOperator(task_id='task1')
 
 # Task to create the table
 create_table_task = MySqlOperator(
@@ -33,6 +33,7 @@ create_table_task = MySqlOperator(
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
     """,
+    dag=dag
 )
 
 
