@@ -23,7 +23,7 @@ dag = DAG(
 task1 = EmptyOperator(task_id='task1')
 
 # Task to create the table
-create_table_task = MySqlOperator(
+create_table = MySqlOperator(
     task_id='create_table',
     mysql_conn_id='mysql_id',  # Replace with your connection ID
     sql="""
