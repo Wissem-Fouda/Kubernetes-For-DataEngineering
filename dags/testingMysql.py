@@ -1,7 +1,7 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.operators.empty import EmptyOperator
-from airflow.providers.mysql.operators.mysql import MySqlOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
 default_args = {
     'owner': 'Fouda',
@@ -20,23 +20,24 @@ dag = DAG(
 )
 
 
-#task1 = EmptyOperator(task_id='task1')
+task1 = EmptyOperator(task_id='task1')
 
 # Task to create the table
-create_table = MySqlOperator(
-    task_id='create_table',
-    mysql_conn_id='mysql_id',  # Replace with your connection ID
-    sql="""
-    CREATE TABLE Country (
-        country_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-        name TEXT,
-        continent TEXT
-    );
-    """,
+create_pet_table = SQLExecuteQueryOperator(
+        task_id="create_pet_table",
+        sql="""
+            CREATE TABLE IF NOT EXISTS pet (
+            pet_id SERIAL PRIMARY KEY,
+            name VARCHAR NOT NULL,
+            pet_type VARCHAR NOT NULL,
+            birth_date DATE NOT NULL,
+            OWNER VARCHAR NOT NULL);
+          """,
+    
     dag=dag,
 )
 
 
 
-create_table
+task1 >> create_pet_table
 
