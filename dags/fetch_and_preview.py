@@ -11,15 +11,14 @@ def get_data(**kwargs):
     url = 'https://raw.githubusercontent.com/airscholar/ApacheFlink-SalesAnalytics/main/output/new-output.csv'
     response = requests.get(url)
 
-    if response.status_code == 200:
-        df = pd.read_csv(url, header=None, names=['Category', 'Price', 'Quantity'])
+    df = pd.read_csv(url, header=None, names=['Category', 'Price', 'Quantity'])
 
         #convert dataframe to json string from xcom
-        json_data = df.to_json(orient='records')
+    json_data = df.to_json(orient='records')
 
-        kwargs['ti'].xcom_push(key='data', value=json_data)
-    else:
-        raise Exception(f'Failed to get data, HTTP status code: {response.status_code}')
+    kwargs['ti'].xcom_push(key='data', value=json_data)
+        
+    
 
 
 def preview_data(**kwargs):
@@ -28,10 +27,9 @@ def preview_data(**kwargs):
 
     output_data = kwargs['ti'].xcom_pull(key='data', task_ids='get_data')
     print(output_data)
-    if output_data:
-        output_data = json.loads(output_data)
-    else:
-        raise ValueError('No data received from XCom')
+    
+    output_data = json.loads(output_data)
+    
 
     # Create Dataframe from JSON data
     df = pd.DataFrame(output_data)
