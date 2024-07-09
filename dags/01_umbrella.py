@@ -39,17 +39,4 @@ task2 = KubernetesPodOperator(
     dag=dag
 )
 
-run_sql_insert_container = KubernetesPodOperator(
-    namespace='airflow',
-    image='foudazdocker/mysql:1.0',  
-    cmds=["python", "./SQL_insert.py"],  
-    name="run-sql-insert-container",
-    task_id="run_sql_insert_container_task",
-    get_logs=True,
-    dag=dag
-)
-
-
-# Set task dependencies
-
-task1 >> task2 >> run_sql_insert_container
+task1 >> task2
