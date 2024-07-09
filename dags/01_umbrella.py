@@ -1,10 +1,8 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
-from airflow.operators.bash import BashOperator
-from airflow.providers.mysql.operators.mysql import MySqlOperator
-# Define default arguments for the DAG => i'm editing this DAG to check GitSync updates
-# Is everything going well!!!! Hellooo
+
+
 default_args = {
     'owner': 'Wissem Fouda',
     'depends_on_past': False,
@@ -51,12 +49,7 @@ run_sql_insert_container = KubernetesPodOperator(
     dag=dag
 )
 
-#bash_task = BashOperator(
-#    task_id="bash_task",
-#    bash_command="echo $MY_VAR",
-#    env={"MY_VAR": "Hello World"}
-#)
 
 # Set task dependencies
-#task1 >> task2 
-task1 >> task2
+
+task1 >> task2 >> run_sql_insert_container
