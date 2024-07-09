@@ -59,4 +59,4 @@ run_sql_insert_container = KubernetesPodOperator(
 
 # Set task dependencies
 #task1 >> task2 
-run_sql_insert_container >> task1 >> task2
+task1 >> run_sql_insert_container >> task2
