@@ -20,24 +20,6 @@ dag = DAG(
 )
 
 
-# Define task1 using KubernetesPodOperator
-task1 = KubernetesPodOperator(
-    namespace='airflow',
-    image="foudazdocker/tasks:1.0",
-    name="task-1",
-    task_id="task-1",
-    get_logs=True,
-    dag=dag
-)
-# Define task2 using KubernetesPodOperator
-task2 = KubernetesPodOperator(
-    namespace='airflow',
-    image="foudazdocker/demorepo:1.0",
-    name="task-2",
-    task_id="task-2",
-    get_logs=True,
-    dag=dag
-)
 
 run_sql_insert_container = KubernetesPodOperator(
     namespace='airflow',
@@ -50,5 +32,4 @@ run_sql_insert_container = KubernetesPodOperator(
 )
 
 
-# Set task dependencies
 run_sql_insert_container
