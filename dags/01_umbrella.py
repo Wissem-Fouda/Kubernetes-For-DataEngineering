@@ -19,7 +19,14 @@ dag = DAG(
     schedule_interval=None
 )
 
-
+task1 = KubernetesPodOperator(
+    namespace='airflow',
+    image="foudazdocker/tasks:1.0",
+    name="task-1",
+    task_id="task-1",
+    get_logs=True,
+    dag=dag
+)
 
 run_sql_insert_container = KubernetesPodOperator(
     namespace='airflow',
@@ -31,4 +38,4 @@ run_sql_insert_container = KubernetesPodOperator(
 )
 
 
-run_sql_insert_container
+task1 >> run_sql_insert_container
