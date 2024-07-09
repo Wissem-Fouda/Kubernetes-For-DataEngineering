@@ -4,13 +4,13 @@ from datetime import datetime
 
 default_args = {
     'owner': 'Fouda',
-    'start_date': datetime(2023, 1, 1),
+    'start_date': datetime(2025, 1, 1),
     'catchup': False,
 }
 
 with DAG('docker_mysql_dag',
          default_args=default_args,
-         schedule_interval='@daily',
+         schedule_interval=None,
          ) as dag:
 
     run_sql_insert_container = KubernetesPodOperator(
