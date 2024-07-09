@@ -23,7 +23,8 @@ dag = DAG(
 
 run_sql_insert_container = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/mysql:3.0', 
+    image='foudazdocker/mysql:4.0', 
+    cmds=["python", "/usr/src/app/SQL_insert.py"],
     name="run-sql-insert-container",
     task_id="run_sql_insert_container_task",
     get_logs=True,
