@@ -8,7 +8,7 @@ from airflow.providers.mysql.operators.mysql import MySqlOperator
 default_args = {
     'owner': 'Wissem Fouda',
     'depends_on_past': False,
-    'start_date': datetime(2025, 1, 1),
+    'start_date': datetime(2023, 1, 1),
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0
@@ -18,7 +18,7 @@ dag = DAG(
     'example_kubernetes_pod',
     default_args=default_args,
     description='A simple DAG to demonstrate KubernetesPodOperator',
-    schedule_interval=None
+    schedule_interval='@daily'
 )
 
 
