@@ -6,7 +6,7 @@ from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperato
 default_args = {
     'owner': 'Wissem Fouda',
     'depends_on_past': False,
-    'start_date': datetime(2025, 1, 1),
+    'start_date': datetime(2023, 1, 1),
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0
