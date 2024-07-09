@@ -26,7 +26,6 @@ run_sql_insert_container = KubernetesPodOperator(
     image='foudazdocker/mysql:2.0', 
     name="run-sql-insert-container",
     task_id="run_sql_insert_container_task",
-    is_delete_operator_pod=True,
     get_logs=True,
     dag=dag
 )
