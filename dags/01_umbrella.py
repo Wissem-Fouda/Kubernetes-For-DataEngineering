@@ -33,7 +33,7 @@ run_sql_insert_container = KubernetesPodOperator(
 
 csv_to_sql = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/csvtosql:5.0', 
+    image='foudazdocker/csvtosql:2.1', 
     cmds=["python", "/usr/src/app/alchemy.py"],
     name="csv_to_sql",
     task_id="csv_to_sql_task",
