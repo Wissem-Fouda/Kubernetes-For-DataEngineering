@@ -23,7 +23,7 @@ dag = DAG(
 
 run_sql_insert_container = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/mysql:5.0', 
+    image='foudazdocker/mysql:1.0.0', 
     cmds=["python", "/usr/src/app/SQL_insert.py"],
     name="run-sql-insert-container",
     task_id="run_sql_insert_container_task",
@@ -31,5 +31,15 @@ run_sql_insert_container = KubernetesPodOperator(
     dag=dag
 )
 
+csv_to_sql = KubernetesPodOperator(
+    namespace='airflow',
+    image='foudazdocker/csvtosql:1.0', 
+    cmds=["python", "/usr/src/app/csvTOsql.py"],
+    name="csv_to_sql",
+    task_id="csv_to_sql_task",
+    get_logs=True,
+    dag=dag
+)
 
-run_sql_insert_container
+
+run_sql_insert_container >> csv_to_sql
