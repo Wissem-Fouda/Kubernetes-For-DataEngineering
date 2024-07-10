@@ -33,7 +33,7 @@ create_table_mysql = KubernetesPodOperator(
 
 insert_to_mysql = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/insert_to_mysql:1.0', 
+    image='foudazdocker/insert_to_mysql:2.0', 
     cmds=["python", "/usr/src/app/insert_to_mysql.py"],
     name="insert_to_mysql",
     task_id="insert_to_mysql",
