@@ -21,25 +21,25 @@ dag = DAG(
 
 
 
-run_sql_insert_container = KubernetesPodOperator(
+create_table_mysql = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/mysql:2.2', 
+    image='foudazdocker/createtable:1.0', 
     cmds=["python", "/usr/src/app/create_table.py"],
-    name="run-sql-insert-container",
-    task_id="run_sql_insert_container_task",
+    name="create_table_mysql",
+    task_id="create_table_mysql",
     get_logs=True,
     dag=dag
 )
 
-csv_to_sql = KubernetesPodOperator(
+insert_to_mysql = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/csvtosql:2.1', 
-    cmds=["python", "/usr/src/app/alchemy.py"],
-    name="csv_to_sql",
-    task_id="csv_to_sql_task",
+    image='foudazdocker/insert_to_mysql:1.0', 
+    cmds=["python", "/usr/src/app/insert_to_mysql.py"],
+    name="insert_to_mysql",
+    task_id="insert_to_mysql",
     get_logs=True,
     dag=dag
 )
 
 
-run_sql_insert_container >> csv_to_sql
+create_table_mysql >> insert_to_mysql
