@@ -23,7 +23,7 @@ dag = DAG(
 
 create_table_mysql = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/createtable:1.0.0', 
+    image='foudazdocker/createtable:1.1', 
     cmds=["python", "/usr/src/app/create_table.py"],
     name="create_table_mysql",
     task_id="create_table_mysql",
@@ -33,7 +33,7 @@ create_table_mysql = KubernetesPodOperator(
 
 insert_to_mysql = KubernetesPodOperator(
     namespace='airflow',
-    image='foudazdocker/insert_to_mysql:1.0.0', 
+    image='foudazdocker/insert_to_mysql:1.1', 
     cmds=["python", "/usr/src/app/insert_to_mysql.py"],
     name="insert_to_mysql",
     task_id="insert_to_mysql",
