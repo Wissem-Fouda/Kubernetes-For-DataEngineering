@@ -21,8 +21,7 @@ dag = DAG(
 )
 
 task = MySqlOperator(
-    namespace='airflow',
-    task_id='mysql_example',
+    
     mysql_conn_id='mysql_default', 
     sql='CREATE TABLE IF NOT EXISTS confidential (id INT PRIMARY KEY, confid_id INT)',
     dag=dag
