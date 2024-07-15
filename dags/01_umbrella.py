@@ -21,7 +21,7 @@ dag = DAG(
 )
 
 task = MySqlOperator(
-    
+    task_id="task_idd",
     mysql_conn_id='mysql_default', 
     sql='CREATE TABLE IF NOT EXISTS confidential (id INT PRIMARY KEY, confid_id INT)',
     dag=dag
