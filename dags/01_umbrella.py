@@ -19,7 +19,13 @@ dag = DAG(
     schedule_interval=None
 )
 
-
+task = MySqlOperator(
+    namespace='airflow',
+    task_id='mysql_example',
+    mysql_conn_id='mysql_default', 
+    sql='CREATE TABLE IF NOT EXISTS confidential (id INT PRIMARY KEY, confid_id INT)',
+    dag=dag
+)
 
 create_table_mysql = KubernetesPodOperator(
     namespace='airflow',
@@ -42,4 +48,4 @@ insert_to_mysql = KubernetesPodOperator(
 )
 
 
-create_table_mysql >> insert_to_mysql
+task >> create_table_mysql >> insert_to_mysql
